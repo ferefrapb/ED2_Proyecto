@@ -25,7 +25,7 @@ tools:showIn="navigation_view">
             <item
                 android:id="@+id/nav_cifradosdes"
                 android:icon="@drawable/ic_mensajes"
-                android:title="Cifrar"
+                android:title="Mensajes"
                 android:visible="true"
                 />
         </menu>
@@ -35,7 +35,7 @@ tools:showIn="navigation_view">
             <item
                 android:id="@+id/nav_bumensajes"
                 android:icon="@drawable/ic_bu"
-                android:title="Cifrar"
+                android:title="Historial de Conversación"
                 android:visible="true"
                 />
         </menu>
