@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+tools:showIn="navigation_view">
+
+<group android:checkableBehavior="single">
+    <item
+        android:id="@+id/nav_login"
+        android:icon="@drawable/ic_login"
+        android:title="Login Usuario"
+        android:visible="true"
+        />
+    <item android:title="Usuario">
+        <menu>
+            <item
+                android:id="@+id/nav_CreaUsuario"
+                android:icon="@drawable/ic_creausuario"
+                android:title="Crea Usuario"
+                android:visible="true"
+                />
+        </menu>
+    </item>
+    <item android:title="Mensajes">
+        <menu>
+            <item
+                android:id="@+id/nav_cifradosdes"
+                android:icon="@drawable/ic_mensajes"
+                android:title="Cifrar"
+                android:visible="true"
+                />
+        </menu>
+    </item>
+    <item android:title="Historial">
+        <menu>
+            <item
+                android:id="@+id/nav_bumensajes"
+                android:icon="@drawable/ic_bu"
+                android:title="Cifrar"
+                android:visible="true"
+                />
+        </menu>
+    </item>
+</group>
+
+</menu>
