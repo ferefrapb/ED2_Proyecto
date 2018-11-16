@@ -13,7 +13,7 @@ tools:showIn="navigation_view">
     <item android:title="Usuario">
         <menu>
             <item
-                android:id="@+id/nav_CreaUsuario"
+                android:id="@+id/nav_crea_usuario"
                 android:icon="@drawable/ic_creausuario"
                 android:title="Crea Usuario"
                 android:visible="true"
@@ -23,7 +23,7 @@ tools:showIn="navigation_view">
     <item android:title="Mensajes">
         <menu>
             <item
-                android:id="@+id/nav_cifradosdes"
+                android:id="@+id/nav_mensajes"
                 android:icon="@drawable/ic_mensajes"
                 android:title="Mensajes"
                 android:visible="true"
@@ -33,7 +33,7 @@ tools:showIn="navigation_view">
     <item android:title="Historial">
         <menu>
             <item
-                android:id="@+id/nav_bumensajes"
+                android:id="@+id/nav_histmensajes"
                 android:icon="@drawable/ic_bu"
                 android:title="Historial de Conversación"
                 android:visible="true"
