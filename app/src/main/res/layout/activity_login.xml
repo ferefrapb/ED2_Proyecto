@@ -78,11 +78,16 @@
                 android:layout_marginTop="24dp"
                 style="@style/Base.TextAppearance.AppCompat.Body1"
                 android:clickable="true"
+                android:focusable="true"
                 android:textAllCaps="false"
                 android:background="@drawable/background_login"
                 />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f9d7db"/>
             <Button
-                android:id="@+id/registro"
+                android:id="@+id/registro_"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Registrarse"
@@ -91,14 +96,19 @@
                 android:layout_marginTop="24dp"
                 style="@style/Base.TextAppearance.AppCompat.Body1"
                 android:clickable="true"
+                android:focusable="true"
                 android:textAllCaps="false"
                 android:background="@drawable/background_login"
                 />
 
         </LinearLayout>
 
-    </ScrollView>
 
+    </ScrollView>
+    <FrameLayout
+        android:id="@+id/fracontainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 
 </LinearLayout>
