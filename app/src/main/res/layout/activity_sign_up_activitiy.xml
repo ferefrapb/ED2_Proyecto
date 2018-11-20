@@ -75,7 +75,7 @@
                 android:background="@android:color/transparent"
                 android:layout_marginTop="4dp"
                 android:drawableStart="@drawable/ic_lock_black_24dp"
-                    />
+                />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -144,7 +144,10 @@
                 android:maxLines="1"
                 android:drawableStart="@drawable/ic_login"
                 android:padding="6dp" />
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f9d7db"/>
             <Button
                 android:id="@+id/registro"
                 android:layout_width="match_parent"
@@ -160,9 +163,7 @@
                 />
 
         </LinearLayout>
-
     </ScrollView>
-
 
 
 </LinearLayout>

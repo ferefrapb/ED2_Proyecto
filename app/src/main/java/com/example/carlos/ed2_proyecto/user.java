@@ -1,5 +1,7 @@
 package com.example.carlos.ed2_proyecto;
 
+import com.google.gson.annotations.SerializedName;
+
 public class user {
     public user(String name, String userName, String password, String email, String lastName) {
         Name = name;
@@ -18,7 +20,7 @@ public class user {
     public void setUserName(String userName) {
         UserName = userName;
     }
-
+    @SerializedName("Username")
     private String UserName;
     private String Password;
     private String Email;

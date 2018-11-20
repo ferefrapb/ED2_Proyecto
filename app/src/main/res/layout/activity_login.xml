@@ -17,7 +17,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:orientation="vertical">
 
@@ -31,25 +31,31 @@
                 android:background="@android:color/transparent"
                 android:padding="12dp"
                 android:src="@drawable/logo" />
-            <EditText
-                android:id="@+id/usernme"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:ems="10"
-                android:background="@android:color/transparent"
-                android:drawablePadding="12dp"
-                android:hint="Username"
-                android:textColorHint="#000000"
-                android:maxLines="1"
-                android:drawableLeft="@drawable/ic_login"
-                android:layout_marginTop="70dp"
-                />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#f9d7db"
                 />
+
+            <EditText
+                android:id="@+id/usernme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/ic_login"
+                android:drawablePadding="12dp"
+                android:ems="10"
+                android:padding="8dp"
+                android:hint="Username"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColorHint="#000000" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f9d7db"/>
             <EditText
                 android:id="@+id/passwrd"
                 android:layout_width="match_parent"
@@ -82,10 +88,6 @@
                 android:textAllCaps="false"
                 android:background="@drawable/background_login"
                 />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#f9d7db"/>
             <Button
                 android:id="@+id/registro_"
                 android:layout_width="match_parent"
@@ -100,15 +102,15 @@
                 android:textAllCaps="false"
                 android:background="@drawable/background_login"
                 />
-
+            <FrameLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
         </LinearLayout>
 
 
     </ScrollView>
-    <FrameLayout
-        android:id="@+id/fracontainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+
 
 
 </LinearLayout>

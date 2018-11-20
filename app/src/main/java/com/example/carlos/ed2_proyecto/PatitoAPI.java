@@ -8,6 +8,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -19,7 +20,10 @@ public interface PatitoAPI {
     Call<String> validateUser();
     @POST("users/signup")
     Call<ResponseBody> signUp(@Body user newuser);
-
+    @POST("users/signin")
+    Call<ResponseBody> signIn(@Body user loggeduser);
+    @GET("users/authorizer")
+    Call<ResponseBody> Authorize(@Header("authorization") String token);
 
 
 
