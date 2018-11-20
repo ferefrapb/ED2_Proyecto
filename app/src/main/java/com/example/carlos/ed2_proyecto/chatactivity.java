@@ -16,6 +16,9 @@ public class chatactivity extends AppCompatActivity {
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemReselectedListener(navListener);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new mensajesfragment()).commit();
     }
 
     private BottomNavigationView.OnNavigationItemReselectedListener navListener =
@@ -36,7 +39,6 @@ public class chatactivity extends AppCompatActivity {
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             selectedFragment).commit();
-
                 }
             };
 }
