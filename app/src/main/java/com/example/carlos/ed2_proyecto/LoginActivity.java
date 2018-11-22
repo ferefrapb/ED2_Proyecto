@@ -1,5 +1,6 @@
 package com.example.carlos.ed2_proyecto;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -70,13 +71,15 @@ public class LoginActivity extends AppCompatActivity {
                         String jwToken = "";
                     if (response.body() != null) {
                         try {
-                            jwToken = response.body().toString();
+                            jwToken = response.body().string();
                         }catch (NullPointerException e){
+                            e.printStackTrace();
+                        } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
                     jwToken = jwToken.replace("\"","");
-                        jwToken = "Bearer" + jwToken;
+                        jwToken = "Bearer" +" "+ jwToken;
                         editor.putString("JWT",jwToken);
                     editor.apply();
                         AppStart();

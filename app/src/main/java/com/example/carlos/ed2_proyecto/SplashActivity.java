@@ -10,11 +10,13 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import okhttp3.Callback;
+import java.io.IOException;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
+import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SplashActivity extends AppCompatActivity {
@@ -43,7 +45,7 @@ PatitoAPI api;
                  finally {
                      final SharedPreferences Preferences
                              = PreferenceManager.getDefaultSharedPreferences(SplashActivity.this);
-                     String Token = Preferences.getString("TOKEN","idk");
+                     String Token = Preferences.getString("JWT","idk");
                         if(!Token.equals("idk")){
                             Verify(Token);
                         }else{
@@ -60,7 +62,7 @@ PatitoAPI api;
         final SharedPreferences Preferences
                 = PreferenceManager.getDefaultSharedPreferences(SplashActivity.this);
       Call<ResponseBody> call = api.Authorize(token);
-      call.enqueue(new retrofit2.Callback<ResponseBody>() {
+      call.enqueue(new Callback<ResponseBody>() {
           @Override
           public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
               if(response.isSuccessful()){
@@ -69,13 +71,15 @@ PatitoAPI api;
                   String nTOken = "";
                   if(response.body()!= null){
                       try{
-                          nTOken = response.body().toString();
+                          nTOken = response.body().string();
                           nTOken = nTOken.replace("\"","");
-                          nTOken = "Bearer" + nTOken;
+                          nTOken = "Bearer" +" " + nTOken;
                           editor.putString("JWT",nTOken);
                           editor.apply();
                           AppStart();
                       }catch (NullPointerException e){
+                          e.printStackTrace();
+                      } catch (IOException e) {
                           e.printStackTrace();
                       }
                   }
@@ -93,7 +97,7 @@ PatitoAPI api;
       });
     }
     void AppStart(){
-        Intent intent = new Intent(SplashActivity.this,MainActivity.class);
+        Intent intent = new Intent(SplashActivity.this,chatactivity.class);
         SplashActivity.this.startActivity(intent);
     }
     void returnSignIn(){

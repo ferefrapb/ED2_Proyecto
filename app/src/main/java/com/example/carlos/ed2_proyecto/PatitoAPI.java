@@ -22,7 +22,7 @@ public interface PatitoAPI {
     Call<ResponseBody> signUp(@Body user newuser);
     @POST("users/signin")
     Call<ResponseBody> signIn(@Body user loggeduser);
-    @GET("users/authorizer")
+    @GET("users/authorize")
     Call<ResponseBody> Authorize(@Header("authorization") String token);
 
 
