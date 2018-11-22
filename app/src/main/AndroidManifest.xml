@@ -36,7 +36,13 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".chatactivity"></activity>
+        <activity android:name=".chatactivity">
+
+        </activity>
+        <activity android:name=".SignUpActivitiy"
+            android:label="@string/app_name">
+
+        </activity>
     </application>
 
 </manifest>

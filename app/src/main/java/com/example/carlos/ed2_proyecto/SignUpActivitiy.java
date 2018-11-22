@@ -23,7 +23,7 @@ PatitoAPI api;
         setContentView(R.layout.activity_sign_up_activitiy);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.16:3001")
+                .baseUrl("http://192.168.43.33:3001")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         final Button registro = findViewById(R.id.registro);

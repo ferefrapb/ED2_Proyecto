@@ -28,7 +28,7 @@ PatitoAPI api;
          Animation myanim = AnimationUtils.loadAnimation(this,R.anim.mytransition);
          img.startAnimation(myanim);
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.16:3001")
+                .baseUrl("http://192.168.43.33:3001")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         api = retrofit.create(PatitoAPI.class);
