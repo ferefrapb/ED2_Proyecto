@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent"
+    android:background="@color/colorBackground"
     android:fitsSystemWindows="true"
     android:visibility="visible"
     tools:context=".MainActivity"
@@ -14,7 +14,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorBackground"
         android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar
@@ -30,7 +30,7 @@
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent" />
+            android:background="@color/colorBackground" />
 
     </LinearLayout>
 
@@ -39,6 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@color/colorBackground"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/menu_chat" />
 

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorBackground">
 
     <item
         android:id="@+id/nav_mensajes"
         android:icon="@drawable/ic_mensajes"
-        android:title="Mensajes" />
+        android:title="Mensajes"
+        android:background="@color/colorBackground"/>
 
     <item
         android:id="@+id/nav_contactos"
