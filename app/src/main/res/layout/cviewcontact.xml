@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:background="@color/colorPrimaryDark"
+
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/imgview"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_margin="25dp"
+            android:src="@drawable/ic_perm_contact" />
+
+        <TextView
+            android:id="@+id/txtView1"
+            android:layout_width="241dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="16dp"
+            android:layout_toRightOf="@id/imgview"
+            android:text="Persona"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimaryDark" />
+
+    </android.support.v7.widget.CardView>
+
+
+
+
+</RelativeLayout>

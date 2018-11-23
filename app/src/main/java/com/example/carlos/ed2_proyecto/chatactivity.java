@@ -1,44 +1,45 @@
 package com.example.carlos.ed2_proyecto;
 
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-public class chatactivity extends AppCompatActivity {
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
+public class chatactivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+    PatitoAPI api;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-        bottomNav.setOnNavigationItemReselectedListener(navListener);
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new mensajesfragment()).commit();
+        bottomNav.setOnNavigationItemSelectedListener(this);
+        if(savedInstanceState== null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new mensajesfragment()).commit();
+            Toast.makeText(this, "Mensajes", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    private BottomNavigationView.OnNavigationItemReselectedListener navListener =
-            new BottomNavigationView.OnNavigationItemReselectedListener() {
-                @Override
-                public void onNavigationItemReselected(@NonNull MenuItem item) {
-                    Fragment selectedFragment = null;
-
-                    switch (item.getItemId())
-                    {
-                        case R.id.nav_mensajes:
-                            selectedFragment = new mensajesfragment();
-                            break;
-                        case R.id.nav_contactos:
-                            selectedFragment = new contactosfragment();
-                            break;
-                    }
-
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch ((item.getItemId())){
+                case R.id.nav_mensajes:
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            selectedFragment).commit();
-                }
-            };
+                            new mensajesfragment()).commit();
+                    break;
+                case R.id.nav_contactos:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                            new contactosfragment()).commit();
+                    break;
+            }
+        return true;
+    }
 }

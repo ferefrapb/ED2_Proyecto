@@ -44,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
              public void onClick(View view) {
                  final Intent case1 = new Intent(LoginActivity.this,SignUpActivitiy.class);
                  LoginActivity.this.startActivity(case1);
+                 LoginActivity.this.finish();
              }
          });
          signin.setOnClickListener(new View.OnClickListener() {
@@ -54,11 +55,12 @@ public class LoginActivity extends AppCompatActivity {
                  }else{
                         user luser = new user(null,username.getText().toString(),password.getText().toString(),null,null);
                         SignIn(luser);
+                        LoginActivity.this.finish();
                  }
              }
          });
     }
-    protected void SignIn(user luser){
+    protected void SignIn(final user luser){
         final SharedPreferences Preferences
                 = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
         Call<ResponseBody> call = api.signIn(luser);
@@ -69,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Bienvenido", Toast.LENGTH_SHORT).show();
                         SharedPreferences.Editor editor = Preferences.edit();
                         String jwToken = "";
+                        String userlogged = luser.getUserName();
                     if (response.body() != null) {
                         try {
                             jwToken = response.body().string();
@@ -81,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                     jwToken = jwToken.replace("\"","");
                         jwToken = "Bearer" +" "+ jwToken;
                         editor.putString("JWT",jwToken);
+                        editor.putString("UserLoged",userlogged);
                     editor.apply();
                         AppStart();
                     Toast.makeText(LoginActivity.this, "Sesión Iniciada", Toast.LENGTH_SHORT).show();

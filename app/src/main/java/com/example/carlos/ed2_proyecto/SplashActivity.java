@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
+import okhttp3.Headers;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,6 +35,7 @@ PatitoAPI api;
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         api = retrofit.create(PatitoAPI.class);
+
          Thread timer = new Thread(){
              public void run(){
                  try{
@@ -51,7 +53,7 @@ PatitoAPI api;
                         }else{
                             returnSignIn();
                         }
-                        finish();
+
                  }
              }
          };
@@ -69,23 +71,24 @@ PatitoAPI api;
                   Toast.makeText(SplashActivity.this, "Bienvenido", Toast.LENGTH_SHORT).show();
                   SharedPreferences.Editor editor = Preferences.edit();
                   String nTOken = "";
-                  if(response.body()!= null){
+                  if(response.headers() != null){
                       try{
-                          nTOken = response.body().string();
+                          Headers headers = response.headers();
+                          nTOken = headers.get("authorization");
                           nTOken = nTOken.replace("\"","");
                           nTOken = "Bearer" +" " + nTOken;
                           editor.putString("JWT",nTOken);
                           editor.apply();
                           AppStart();
+                          finish();
                       }catch (NullPointerException e){
-                          e.printStackTrace();
-                      } catch (IOException e) {
                           e.printStackTrace();
                       }
                   }
               } else if(response.code() == 403){
                   Toast.makeText(SplashActivity.this, "Sesión expirada", Toast.LENGTH_SHORT).show();
                   returnSignIn();
+                  finish();
               }
           }
 
