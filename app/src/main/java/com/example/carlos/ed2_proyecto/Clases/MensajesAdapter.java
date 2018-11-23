@@ -15,7 +15,7 @@ import com.example.carlos.ed2_proyecto.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MessageAdapter extends BaseAdapter {
+class MessageAdapter extends BaseAdapter {
 
     List<mensaje> messages = new ArrayList<mensaje>();
     Context context;
