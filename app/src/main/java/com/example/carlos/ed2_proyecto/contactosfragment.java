@@ -65,7 +65,7 @@ public class contactosfragment extends Fragment {
             @Override
             public void onResponse(Call<List<contacto>> call, Response<List<contacto>> response) {
                 if(response.isSuccessful()){
-                    SharedPreferences.Editor editor = Preferences.edit();
+                    final SharedPreferences.Editor editor = Preferences.edit();
                     String tken = "";
                     if(response.headers() != null){
                         try{
@@ -81,8 +81,10 @@ public class contactosfragment extends Fragment {
                     }
                     if(response.body() !=null){
                         contactoLis = response.body();
+                        String user = Preferences.getString("UserLoged","idk");
                         if (contactoLis != null) {
                             for(contacto contacto: contactoLis){
+                                if(!contacto.getUsername().equals(user))
                                 contactos.add(contacto.getUsername());
                             }
                         }
@@ -90,6 +92,18 @@ public class contactosfragment extends Fragment {
                         recyclerView.setLayoutManager(mLayoutmanager);
                         adapter = new contactosAdapter(getActivity(),contactos);
                         recyclerView.setAdapter(adapter);
+                        adapter.setOnclickListener(new contactosAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClicked(int position) {
+                                String uconverse = contactos.get(position);
+                                editor.putString("Userconverse",uconverse);
+                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                        new mensajesfragment()).addToBackStack(null).commit();
+                                        chatactivity chatactivity = (chatactivity) getActivity();
+                                        chatactivity.bottomNav.setSelectedItemId(R.id.nav_mensajes);
+                                Toast.makeText(getActivity(), uconverse, Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
                     }
                 }else if(response.code()==403){

@@ -14,12 +14,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class chatactivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     PatitoAPI api;
+    BottomNavigationView bottomNav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(this);
         if(savedInstanceState== null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

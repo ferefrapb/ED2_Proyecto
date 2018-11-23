@@ -14,6 +14,13 @@ import java.util.List;
 
 public class contactosAdapter extends  RecyclerView.Adapter<contactosAdapter.ContactosViewHolder> {
     private List<String> users;
+    private OnItemClickListener mlistener;
+    public interface OnItemClickListener{
+        void onItemClicked(int position);
+    }
+    public void setOnclickListener(OnItemClickListener listener){
+        mlistener = listener;
+    }
 private Context myContext;
     public contactosAdapter(Context context, List<String> users){
         this.users = users;
@@ -25,7 +32,7 @@ private Context myContext;
     public ContactosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflator = LayoutInflater.from(myContext);
         View view = inflator.inflate(R.layout.cviewcontact,null);
-        ContactosViewHolder holder = new ContactosViewHolder(view);
+        ContactosViewHolder holder = new ContactosViewHolder(view,mlistener);
         return holder;
     }
 
@@ -49,10 +56,21 @@ private Context myContext;
          TextView contact;
          ImageView img;
 
-        public ContactosViewHolder(@NonNull View itemView) {
+        public ContactosViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             contact =itemView.findViewById(R.id.txtView1);
             img = itemView.findViewById(R.id.imgview);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener!=null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.onItemClicked(position);
+                        }
+                    }
+                }
+            });
 
         }
     }
