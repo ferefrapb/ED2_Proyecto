@@ -14,8 +14,6 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface PatitoAPI {
-    @GET("users")
-    Call<List<user>> getusers();
     @GET("users/authorize")
     Call<String> validateUser();
     @POST("users/signup")
@@ -24,7 +22,8 @@ public interface PatitoAPI {
     Call<ResponseBody> signIn(@Body user loggeduser);
     @GET("users/authorize")
     Call<ResponseBody> Authorize(@Header("authorization") String token);
-
+    @GET("users/all")
+    Call<List<contacto>> getusers(@Header("authorization") String token);
 
 
 }

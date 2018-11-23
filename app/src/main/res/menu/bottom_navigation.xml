@@ -6,7 +6,7 @@
         android:id="@+id/nav_mensajes"
         android:icon="@drawable/ic_mensajes"
         android:title="Mensajes"
-        android:background="@color/colorBackground"/>
+        />
 
     <item
         android:id="@+id/nav_contactos"
