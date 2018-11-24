@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ public class contactosfragment extends Fragment {
     List<String> contactos = new ArrayList<>();
     List<contacto> contactoLis;
     contactosAdapter adapter;
+    Button logout;
     PatitoAPI api;
     @Nullable
     @Override
@@ -49,7 +51,17 @@ public class contactosfragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         api = retrofit.create(PatitoAPI.class);
-
+        logout = view.findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final SharedPreferences Preferences
+                        = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+                final SharedPreferences.Editor editor = Preferences.edit();
+                editor.putString("JWT",null);
+                returnSignIn();
+            }
+        });
 
         if(Token.equals("idk")){
             Intent intent = new Intent(getActivity(),LoginActivity.class);

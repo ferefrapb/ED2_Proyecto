@@ -55,7 +55,6 @@ public class LoginActivity extends AppCompatActivity {
                  }else{
                         user luser = new user(null,username.getText().toString().trim(),password.getText().toString().trim(),null,null);
                         SignIn(luser);
-                        LoginActivity.this.finish();
                  }
              }
          });
@@ -103,6 +102,10 @@ public class LoginActivity extends AppCompatActivity {
     void AppStart(){
         Intent intent = new Intent(LoginActivity.this,chatactivity.class);
         LoginActivity.this.startActivity(intent);
+    }
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 
 

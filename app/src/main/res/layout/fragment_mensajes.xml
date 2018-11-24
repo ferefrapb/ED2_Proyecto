@@ -5,6 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".mensajesfragment"
     >
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:id="@+id/logout1"
+        android:text="Log out"
+        android:layout_marginStart="350dp"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/myrview"
         android:layout_width="match_parent"

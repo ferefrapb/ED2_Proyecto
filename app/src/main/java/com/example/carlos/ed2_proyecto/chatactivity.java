@@ -48,6 +48,10 @@ public class chatactivity extends AppCompatActivity implements BottomNavigationV
             }
         return true;
     }
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 
 
 }

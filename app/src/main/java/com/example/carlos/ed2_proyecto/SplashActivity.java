@@ -109,4 +109,8 @@ PatitoAPI api;
 
     }
 
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 }

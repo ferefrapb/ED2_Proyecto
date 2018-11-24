@@ -3,22 +3,17 @@ package com.example.carlos.ed2_proyecto;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.carlos.ed2_proyecto.Algorithm.SDES;
 import com.example.carlos.ed2_proyecto.Algorithm.ZigZag;
-
-import java.util.Objects;
 
 import okhttp3.Headers;
 import okhttp3.ResponseBody;
@@ -160,5 +155,9 @@ public class mensajesactivity extends AppCompatActivity {
             }
         });
 
+    }
+    public void onBackPressed() {
+        Intent intent = new Intent(mensajesactivity.this,chatactivity.class);
+        startActivity(intent);
     }
 }

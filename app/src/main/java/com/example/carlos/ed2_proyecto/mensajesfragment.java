@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class mensajesfragment extends Fragment {
     RecyclerView myrview;
     PatitoAPI api;
     msajesfragAdapter adapter;
+    Button logout1;
     List<String> conversationOther = new ArrayList<>();
     @Nullable
     @Override
@@ -45,6 +47,17 @@ public class mensajesfragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         api = retrofit.create(PatitoAPI.class);
+        logout1 = view.findViewById(R.id.logout1);
+        logout1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final SharedPreferences Preferences
+                        = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+                final SharedPreferences.Editor editor = Preferences.edit();
+                editor.putString("JWT",null);
+                returnSignIn();
+            }
+        });
         if(Token.equals("idk")) {
             Intent intent = new Intent(getActivity(), LoginActivity.class);
             Objects.requireNonNull(getActivity()).startActivity(intent);
@@ -120,4 +133,5 @@ public class mensajesfragment extends Fragment {
         Intent intent = new Intent(getActivity(),LoginActivity.class);
         Objects.requireNonNull(getActivity()).startActivity(intent);
     }
+
 }

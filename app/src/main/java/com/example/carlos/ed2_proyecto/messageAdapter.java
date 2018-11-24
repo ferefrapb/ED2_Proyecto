@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.carlos.ed2_proyecto.Algorithm.SDES;
 import com.example.carlos.ed2_proyecto.Algorithm.ZigZag;
 
 public class messageAdapter extends BaseAdapter {

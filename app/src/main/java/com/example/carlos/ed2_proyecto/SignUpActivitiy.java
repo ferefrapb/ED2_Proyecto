@@ -87,4 +87,8 @@ PatitoAPI api;
             }
         });
     }
+    public void onBackPressed() {
+        Intent intent = new Intent(SignUpActivitiy.this,LoginActivity.class);
+        SignUpActivitiy.this.startActivity(intent);
+    }
 }
