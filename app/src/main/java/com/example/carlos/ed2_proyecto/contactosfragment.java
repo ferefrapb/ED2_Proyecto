@@ -147,7 +147,7 @@ public class contactosfragment extends Fragment {
                         List<String> part = new ArrayList<>();
                         part.add(userloged);
                         part.add(user);
-                        String key = generatekey();
+                        int key = generatekey();
                         List<Message> messages = new ArrayList<>();
                         Conversation newconverse = new Conversation(part,messages,key);
                         AgregarConversation(newconverse,tken);
@@ -208,10 +208,10 @@ public class contactosfragment extends Fragment {
         });
 
     }
-    protected  String generatekey(){
-        int bit = (int)(Math.random() * ((1023 - 512) + 1)) + 512;
-        String bin = Integer.toBinaryString(bit);
-        return bin;
+    protected  int generatekey(){
+        Random random = new Random();
+        int nivel = random.nextInt(10 - 2 + 1) + 2;
+        return nivel;
     }
 
 

@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.carlos.ed2_proyecto.Algorithm.SDES;
+import com.example.carlos.ed2_proyecto.Algorithm.ZigZag;
 
 import java.util.Objects;
 
@@ -69,19 +70,21 @@ public class mensajesactivity extends AppCompatActivity {
                                 = PreferenceManager.getDefaultSharedPreferences(mensajesactivity.this);
                         String user = myPreferences.getString("Userconverse","idk");
                         final String userlog = myPreferences.getString("UserLoged","idk");
-                        SDES algorithm = new SDES();
-                        algorithm.GenerateKeys(conversation.key);
-                        byte[] bytes = mensaje.getBytes();
-                        StringBuilder builder = new StringBuilder();
-                        for(int b:bytes){
-                            builder.append(algorithm.cipher(b));
+                        ZigZag algorithm = new ZigZag();
+                        String message_;
+
+                        try {
+                            message_ = algorithm.Encryption(mensaje,conversation.key);
+                            Message message = new Message(userlog,user,message_,"");
+                            conversation.mensajes.add(message);
+                            editText.setText("");
+                            Enviar();
+                            adapter = new messageAdapter(mensajesactivity.this,userlog,conversation);
+                            listView.setAdapter(adapter);
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
-                        Message message = new Message(userlog,user,builder.toString(),"");
-                        conversation.mensajes.add(message);
-                        editText.setText("");
-                        Enviar();
-                        adapter = new messageAdapter(mensajesactivity.this,userlog,conversation);
-                        listView.setAdapter(adapter);
+
 
                     }
                 }

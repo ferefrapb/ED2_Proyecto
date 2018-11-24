@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.carlos.ed2_proyecto.Algorithm.SDES;
+import com.example.carlos.ed2_proyecto.Algorithm.ZigZag;
 
 public class messageAdapter extends BaseAdapter {
     private static LayoutInflater inflater = null;
@@ -42,22 +43,23 @@ public class messageAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         final View Viewemisor = inflater.inflate(R.layout.bubble_emisor,null);
         final View Viewreceptor = inflater.inflate(R.layout.bubble_receptor,null);
-        SDES sdes = new SDES();
-        sdes.GenerateKeys(conversation.key);
+        ZigZag zz = new ZigZag();
+        String message = "";
+
             String mensaje = conversation.mensajes.get(position).getMensaje();
-            StringBuilder builder = new StringBuilder();
-            byte[] bytes = mensaje.getBytes();
-            for(int i: bytes){
-                builder.append(sdes.descipher(i));
-            }
+        try {
+            message = zz.Decryption(mensaje,conversation.key);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         TextView emisor = Viewemisor.findViewById(R.id.emisortxt);
         TextView receptor = Viewreceptor.findViewById(R.id.receptortxt);
 
         if(usuarioLoged.equals(conversation.mensajes.get(position).getEmisor())){
-            emisor.setText(builder.toString());
+            emisor.setText(message);
             return Viewemisor;
         }else{
-            receptor.setText(builder.toString());
+            receptor.setText(message);
             return Viewreceptor;
         }
     }
