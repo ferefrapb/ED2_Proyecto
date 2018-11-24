@@ -1,9 +1,12 @@
 package com.example.carlos.ed2_proyecto;
 
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ListView;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.scaledrone.lib.Member;
@@ -17,6 +20,8 @@ public class mensajesactivity extends AppCompatActivity implements
     private String channelID = "CHANNEL_ID_FROM_YOUR_SCALEDRONE_DASHBOARD";
     private String roomName = "observable-room";
     private EditText editText;
+    private ImageButton button;
+    private ListView listView;
     private Scaledrone scaledrone;
 
     @Override
@@ -24,7 +29,9 @@ public class mensajesactivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mensajes);
         // This is where we write the mesage
-        editText = (EditText) findViewById(R.id.etMensaje);
+        editText =findViewById(R.id.etMensaje);
+        button = findViewById(R.id.imageButton);
+        listView = findViewById(R.id.lvMensajes);
     }
     @Override
     public void onOpen(Room room) {

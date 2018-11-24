@@ -1,21 +1,27 @@
 package com.example.carlos.ed2_proyecto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Conversation {
-    List<contacto> participantes;
+    List<String> participantes;
     List<Message> mensajes;
 
-    public Conversation(List<contacto> participantes, List<Message> mensajes) {
+    public Conversation(List<String> participantes, List<Message> mensajes) {
         this.participantes = participantes;
         this.mensajes = mensajes;
     }
+    public Conversation(List<String> participantes) {
+        this.participantes = participantes;
+        this.mensajes = new ArrayList<>();
+    }
 
-    public List<contacto> getParticipantes() {
+
+    public List<String> getParticipantes() {
         return participantes;
     }
 
-    public void setParticipantes(List<contacto> participantes) {
+    public void setParticipantes(List<String> participantes) {
         this.participantes = participantes;
     }
 

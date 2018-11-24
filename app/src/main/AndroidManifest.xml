@@ -38,6 +38,10 @@
             android:label="@string/app_name">
 
         </activity>
+        <activity android:name=".mensajesactivity"
+            android:label="mensajes">
+
+        </activity>
     </application>
 
 </manifest>

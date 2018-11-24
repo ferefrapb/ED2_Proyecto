@@ -11,6 +11,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface PatitoAPI {
@@ -24,6 +25,16 @@ public interface PatitoAPI {
     Call<ResponseBody> Authorize(@Header("authorization") String token);
     @GET("users/all")
     Call<List<contacto>> getusers(@Header("authorization") String token);
+    @GET("messages/validate")
+    Call<Conversation> Validateconvese(@Header("authorization") String token,@Header("ouser")String user);
+    @POST("messages/addnew")
+    Call<ResponseBody> AgregarConversacion(@Header("authorization") String token,@Body Conversation conversation);
+    @PUT("messages/update")
+    Call<ResponseBody> Updatechat(@Header("authorization") String token);
+    @GET("messages/getConversation")
+    Call<Conversation> getConversation(@Header("authorization")String token,@Header("user") String user);
+    @GET("messages/getAll")
+    Call<List<Conversation>> getConversations(@Header("authorization") String token);
 
 
 }

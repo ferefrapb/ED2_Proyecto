@@ -17,8 +17,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.prefs.Preferences;
 
 import okhttp3.Headers;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,7 +62,7 @@ public class contactosfragment extends Fragment {
     protected void getUsers(String token, final View view){
         final SharedPreferences Preferences
                 = PreferenceManager.getDefaultSharedPreferences(view.getContext());
-        Call<List<contacto>> call =     api.getusers(token);
+        Call<List<contacto>> call = api.getusers(token);
         call.enqueue(new Callback<List<contacto>>() {
             @Override
             public void onResponse(Call<List<contacto>> call, Response<List<contacto>> response) {
@@ -97,11 +99,8 @@ public class contactosfragment extends Fragment {
                             public void onItemClicked(int position) {
                                 String uconverse = contactos.get(position);
                                 editor.putString("Userconverse",uconverse);
-                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                                        new mensajesfragment()).addToBackStack(null).commit();
-                                        chatactivity chatactivity = (chatactivity) getActivity();
-                                        chatactivity.bottomNav.setSelectedItemId(R.id.nav_mensajes);
-                                Toast.makeText(getActivity(), uconverse, Toast.LENGTH_SHORT).show();
+                                editor.apply();
+                                CreateorShowconverse();
                             }
                         });
 
@@ -114,7 +113,7 @@ public class contactosfragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<contacto>> call, Throwable t) {
-                Toast.makeText(getActivity(), "Sesión expirada", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "ERROR:" +t.getMessage(), Toast.LENGTH_SHORT).show();
                 returnSignIn();
             }
         });
@@ -122,6 +121,89 @@ public class contactosfragment extends Fragment {
     void returnSignIn(){
         Intent intent = new Intent(getActivity(),LoginActivity.class);
         Objects.requireNonNull(getActivity()).startActivity(intent);
+
+    }
+
+    void CreateorShowconverse(){
+        final SharedPreferences Preferences
+                = PreferenceManager.getDefaultSharedPreferences(getActivity());
+           final String user = Preferences.getString("Userconverse","idk");
+            String token = Preferences.getString("JWT","idk");
+            Call<Conversation> call = api.Validateconvese(token,user);
+             final SharedPreferences.Editor editor = Preferences.edit();
+                call.enqueue(new Callback<Conversation>() {
+                @Override
+                public void onResponse(Call<Conversation> call, Response<Conversation> response) {
+                    if(response.code()==204){
+                        String userloged = Preferences.getString("UserLoged","idk");
+                        String tken = "";
+                        Headers headers = response.headers();
+                        tken = headers.get("authorization");
+                        tken = tken.replace("\"","");
+                        tken = "Bearer" +" " + tken;
+                        editor.putString("JWT",tken);
+                        editor.apply();
+                        List<String> part = new ArrayList<>();
+                        part.add(userloged);
+                        part.add(user);
+                        Conversation newconverse = new Conversation(part);
+                        AgregarConversation(newconverse,tken);
+                    }else if(response.code()==409){
+                        String tken = "";
+                        Headers headers = response.headers();
+                        tken = headers.get("authorization");
+                        tken = tken.replace("\"","");
+                        tken = "Bearer" +" " + tken;
+                        editor.putString("JWT",tken);
+                        editor.apply();
+                        Intent intent = new Intent(getActivity(),mensajesactivity.class);
+                        startActivity(intent);
+                        Conversation existing = response.body();
+                        Toast.makeText(getActivity(), "Conversacion con:" + user +" "+"existente", Toast.LENGTH_SHORT).show();
+                    }else if(response.code() == 403){
+                        Toast.makeText(getActivity(), "Sesión expirada", Toast.LENGTH_SHORT).show();
+                        returnSignIn();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Conversation> call, Throwable t) {
+                    Toast.makeText(getActivity(), "ERROR:" +t.getMessage(), Toast.LENGTH_SHORT).show();
+                    returnSignIn();
+                }
+            });
+
+
+    }
+
+    void AgregarConversation(Conversation newc, String token){
+        Call<ResponseBody> call = api.AgregarConversacion(token,newc);
+        final SharedPreferences Preferences
+                = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        final SharedPreferences.Editor editor = Preferences.edit();
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.code()==201){
+                    String tken = "";
+                    Headers headers = response.headers();
+                    tken = headers.get("authorization");
+                    tken = tken.replace("\"","");
+                    tken = "Bearer" +" " + tken;
+                    editor.putString("JWT",tken);
+                    editor.apply();
+                    Toast.makeText(getActivity(), "Connversación creada", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(),mensajesactivity.class);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getActivity(), "ERROR:" +t.getMessage(), Toast.LENGTH_SHORT).show();
+                returnSignIn();
+            }
+        });
 
     }
 
