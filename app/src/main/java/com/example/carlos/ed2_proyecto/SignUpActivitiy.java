@@ -38,12 +38,12 @@ PatitoAPI api;
         registro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(username.getText().toString().isEmpty()||passwrd.getText().toString().isEmpty()||
-                        cpass.getText().toString().isEmpty()||nme.getText().toString().isEmpty()|| lname.getText().toString().isEmpty()
-                        ||email.getText().toString().isEmpty()){
+                if(username.getText().toString().trim().isEmpty()||passwrd.getText().toString().trim().isEmpty()||
+                        cpass.getText().toString().trim().isEmpty()||nme.getText().toString().trim().isEmpty()|| lname.getText().toString().trim().isEmpty()
+                        ||email.getText().toString().trim().isEmpty()){
                     Toast.makeText(SignUpActivitiy.this, "Por favor, llene todos los campos para continnuar", Toast.LENGTH_SHORT).show();
                 }else if(passwrd.getText().toString().trim().equals(cpass.getText().toString().trim())){
-                            if(email.getText().toString().contains("@") && email.getText().toString().contains(".com")) {
+                            if(email.getText().toString().contains("@") && email.getText().toString().contains(".com") && email.getText().toString().trim().length()>6) {
                                 user newUser = new user(nme.getText().toString().trim(), username.getText().toString().trim(), passwrd.getText().toString().trim(),
                                         email.getText().toString().trim(), lname.getText().toString().trim());
                                 SignUp(newUser);
