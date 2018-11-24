@@ -41,7 +41,7 @@ public class mensajesfragment extends Fragment {
         myrview = view.findViewById(R.id.myrview);
         String Token = Preferences.getString("JWT","idk");
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.24:3001")
+                .baseUrl("http://192.168.1.7:3001")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         api = retrofit.create(PatitoAPI.class);

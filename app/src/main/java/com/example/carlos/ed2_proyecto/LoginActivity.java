@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.24:3001")
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.7:3001")
                 .addConverterFactory(GsonConverterFactory.create()).build();
          api = retrofit.create(PatitoAPI.class);
          final Button signup = findViewById(R.id.registro_);
