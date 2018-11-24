@@ -50,10 +50,10 @@ public class LoginActivity extends AppCompatActivity {
          signin.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 if(username.getText().toString().isEmpty()|| password.getText().toString().isEmpty()){
+                 if(username.getText().toString().trim().isEmpty()|| password.getText().toString().trim().isEmpty()){
                      Toast.makeText(LoginActivity.this, "Por favor ingrese sus datos", Toast.LENGTH_SHORT).show();
                  }else{
-                        user luser = new user(null,username.getText().toString(),password.getText().toString(),null,null);
+                        user luser = new user(null,username.getText().toString().trim(),password.getText().toString().trim(),null,null);
                         SignIn(luser);
                         LoginActivity.this.finish();
                  }
