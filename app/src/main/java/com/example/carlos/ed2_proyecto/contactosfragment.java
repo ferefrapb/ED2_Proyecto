@@ -44,7 +44,7 @@ public class contactosfragment extends Fragment {
         String Token = Preferences.getString("JWT","idk");
         recyclerView = view.findViewById(R.id.myRV);
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.43.33:3001")
+                .baseUrl("http://192.168.1.24:3001")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         api = retrofit.create(PatitoAPI.class);

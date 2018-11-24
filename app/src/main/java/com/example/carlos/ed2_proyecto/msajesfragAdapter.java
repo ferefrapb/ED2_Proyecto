@@ -9,57 +9,52 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import java.util.List;
 
-public class contactosAdapter extends  RecyclerView.Adapter<contactosAdapter.ContactosViewHolder> {
-    private List<String> users;
+public class msajesfragAdapter extends RecyclerView.Adapter<msajesfragAdapter.MesajesFragViewHolder>{
     private OnItemClickListener mlistener;
+    private List<String> users;
+
     public interface OnItemClickListener{
         void onItemClicked(int position);
     }
     public void setOnclickListener(OnItemClickListener listener){
         mlistener = listener;
     }
-private Context myContext;
-    public contactosAdapter(Context context, List<String> users){
-        this.users = users;
-        myContext = context;
-    }
+    private Context myContext;
 
+    public msajesfragAdapter(Context context, List<String> users) {
+        myContext = context;
+        this.users = users;
+    }
     @NonNull
     @Override
-    public ContactosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MesajesFragViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflator = LayoutInflater.from(myContext);
-        View view = inflator.inflate(R.layout.cviewcontact,null);
-        ContactosViewHolder holder = new ContactosViewHolder(view,mlistener);
+        View view = inflator.inflate(R.layout.cviewlist,null);
+        MesajesFragViewHolder holder = new MesajesFragViewHolder(view,mlistener);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ContactosViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MesajesFragViewHolder holder, int position) {
         String user = users.get(position);
-        holder.contact.setText(user);
+        holder.converseuser.setText(user);
     }
 
     @Override
     public int getItemCount() {
         return users.size();
     }
-    public synchronized void refreshadapter(List<String> nusers){
-        users.clear();
-        users.addAll(nusers);
-        notifyDataSetChanged();
-    }
 
-     class ContactosViewHolder extends RecyclerView.ViewHolder{
-         TextView contact;
-         ImageView img;
 
-        public ContactosViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
+    class MesajesFragViewHolder extends RecyclerView.ViewHolder{
+        TextView converseuser;
+        ImageView img;
+        public MesajesFragViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
-            contact =itemView.findViewById(R.id.txtView1);
-            img = itemView.findViewById(R.id.imgview2);
+            converseuser =itemView.findViewById(R.id.txtView1);
+            img = itemView.findViewById(R.id.imgview3);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

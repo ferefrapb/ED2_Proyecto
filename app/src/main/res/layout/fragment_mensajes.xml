@@ -5,12 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".mensajesfragment"
     >
-
-
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/myrview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBackground"
-        android:text="Mensajes" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:scrollbars="none|vertical">
+    </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

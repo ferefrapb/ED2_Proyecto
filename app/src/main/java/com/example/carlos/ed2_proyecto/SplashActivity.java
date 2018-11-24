@@ -31,7 +31,7 @@ PatitoAPI api;
          Animation myanim = AnimationUtils.loadAnimation(this,R.anim.mytransition);
          img.startAnimation(myanim);
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.43.33:3001")
+                .baseUrl("http://192.168.1.24:3001")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         api = retrofit.create(PatitoAPI.class);
@@ -80,7 +80,6 @@ PatitoAPI api;
                           editor.putString("JWT",nTOken);
                           editor.apply();
                           AppStart();
-                          finish();
                       }catch (NullPointerException e){
                           e.printStackTrace();
                       }
@@ -88,7 +87,6 @@ PatitoAPI api;
               } else if(response.code() == 403){
                   Toast.makeText(SplashActivity.this, "Sesión expirada", Toast.LENGTH_SHORT).show();
                   returnSignIn();
-                  finish();
               }
           }
 
@@ -102,10 +100,12 @@ PatitoAPI api;
     void AppStart(){
         Intent intent = new Intent(SplashActivity.this,chatactivity.class);
         SplashActivity.this.startActivity(intent);
+        finish();
     }
     void returnSignIn(){
         Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
             SplashActivity.this.startActivity(intent);
+            finish();
 
     }
 
