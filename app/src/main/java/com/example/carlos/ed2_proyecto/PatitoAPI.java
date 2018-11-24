@@ -30,7 +30,7 @@ public interface PatitoAPI {
     @POST("messages/addnew")
     Call<ResponseBody> AgregarConversacion(@Header("authorization") String token,@Body Conversation conversation);
     @PUT("messages/update")
-    Call<ResponseBody> Updatechat(@Header("authorization") String token);
+    Call<ResponseBody> Updatechat(@Header("authorization") String token,@Header("user")String user, @Body Conversation conversation);
     @GET("messages/getConversation")
     Call<Conversation> getConversation(@Header("authorization")String token,@Header("user") String user);
     @GET("messages/getAll")

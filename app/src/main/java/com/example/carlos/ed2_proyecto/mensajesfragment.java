@@ -41,7 +41,7 @@ public class mensajesfragment extends Fragment {
         myrview = view.findViewById(R.id.myrview);
         String Token = Preferences.getString("JWT","idk");
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.7:3001")
+                .baseUrl("http://192.168.1.24:3001")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         api = retrofit.create(PatitoAPI.class);
@@ -94,6 +94,8 @@ public class mensajesfragment extends Fragment {
                             public void onItemClicked(int position) {
                                 String uconverse = conversationOther.get(position);
                                 editor.putString("Userconverse",uconverse);
+                                Intent intent = new Intent(getActivity(),mensajesactivity.class);
+                                startActivity(intent);
                                 editor.apply();
 
                             }

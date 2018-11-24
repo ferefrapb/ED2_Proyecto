@@ -7,14 +7,22 @@ public class Conversation {
     List<String> participantes;
     List<Message> mensajes;
 
-    public Conversation(List<String> participantes, List<Message> mensajes) {
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    String key;
+
+    public Conversation(List<String> participantes, List<Message> mensajes,String key) {
         this.participantes = participantes;
         this.mensajes = mensajes;
+        this.key = key;
     }
-    public Conversation(List<String> participantes) {
-        this.participantes = participantes;
-        this.mensajes = new ArrayList<>();
-    }
+
 
 
     public List<String> getParticipantes() {

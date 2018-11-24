@@ -17,6 +17,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 import java.util.prefs.Preferences;
 
 import okhttp3.Headers;
@@ -44,7 +45,7 @@ public class contactosfragment extends Fragment {
         String Token = Preferences.getString("JWT","idk");
         recyclerView = view.findViewById(R.id.myRV);
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.7:3001")
+                .baseUrl("http://192.168.1.24:3001")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         api = retrofit.create(PatitoAPI.class);
@@ -146,7 +147,9 @@ public class contactosfragment extends Fragment {
                         List<String> part = new ArrayList<>();
                         part.add(userloged);
                         part.add(user);
-                        Conversation newconverse = new Conversation(part);
+                        String key = generatekey();
+                        List<Message> messages = new ArrayList<>();
+                        Conversation newconverse = new Conversation(part,messages,key);
                         AgregarConversation(newconverse,tken);
                     }else if(response.code()==409){
                         String tken = "";
@@ -158,7 +161,6 @@ public class contactosfragment extends Fragment {
                         editor.apply();
                         Intent intent = new Intent(getActivity(),mensajesactivity.class);
                         startActivity(intent);
-                        Conversation existing = response.body();
                         Toast.makeText(getActivity(), "Conversacion con:" + user +" "+"existente", Toast.LENGTH_SHORT).show();
                     }else if(response.code() == 403){
                         Toast.makeText(getActivity(), "Sesión expirada", Toast.LENGTH_SHORT).show();
@@ -206,6 +208,12 @@ public class contactosfragment extends Fragment {
         });
 
     }
+    protected  String generatekey(){
+        int bit = (int)(Math.random() * ((1023 - 512) + 1)) + 512;
+        String bin = Integer.toBinaryString(bit);
+        return bin;
+    }
+
 
 }
 
